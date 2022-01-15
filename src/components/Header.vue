@@ -21,7 +21,7 @@ import AppBar from "./AppBar.vue";
   },
 })
 export default class Header extends Vue {
-  private drawer = true;
+  private drawer = null;
   private pages = [
     { title: "Home", icon: "mdi-home", to: "/" },
     { title: "About", icon: "mdi-information", to: "/about" },
