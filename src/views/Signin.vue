@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper pa-3">
+  <div class="auth-form-wrapper pa-3">
     <div class="text-center mb-3 text-h4"><strong>Login</strong></div>
     <div class="text-center mb-3 grey--text subtitle-2">
       Login and we'll guide you to make your best deals.
@@ -51,12 +51,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.wrapper {
-  max-width: 400px;
-  margin: auto;
-  border: 1px solid #ddd;
-  margin-top: 100px;
-}
-</style>
