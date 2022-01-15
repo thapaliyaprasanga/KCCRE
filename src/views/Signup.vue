@@ -28,6 +28,7 @@
 
 <script>
 import TextField from "@/components/TextField.vue";
+import { RootMutations } from "@/store";
 export default {
   components: {
     TextField,
@@ -54,6 +55,30 @@ export default {
   methods: {
     submit() {
       const valid = this.$refs.form.validate();
+      if (valid && this.name && this.email && this.password) {
+        const credentials = {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+        };
+        this.$store
+          .dispatch("auth/register", credentials)
+          .then(() => {
+            this.$store.commit(
+              RootMutations.SHOW_SNACKBAR,
+              "User created successfully"
+            );
+            this.$router.push({
+              name: "Signin",
+            });
+          })
+          .catch((error) => {
+            this.$store.commit(
+              RootMutations.SHOW_SNACKBAR,
+              error.response.data.message
+            );
+          });
+      }
     },
   },
 };

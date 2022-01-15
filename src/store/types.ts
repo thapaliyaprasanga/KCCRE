@@ -1,3 +1,7 @@
 export interface RootState {
-  loading: null;
+  loading: null | boolean;
+  snackbar: {
+    show: null | boolean;
+    text: null | string;
+  };
 }
