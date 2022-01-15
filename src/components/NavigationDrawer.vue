@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer
-    @transitionend="toggleDrawer"
+    @transitionend="$emit('toggleDrawer')"
     :value="true"
     absolute
     temporary
@@ -27,12 +27,44 @@
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+      <span v-if="authenticated">
+        <v-list-item
+          v-for="item in authPages"
+          :key="item.title"
+          link
+          :to="item.to"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </span>
+      <span v-if="!authenticated">
+        <v-list-item
+          v-for="item in notAuthPages"
+          :key="item.title"
+          link
+          :to="item.to"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </span>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Emit } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 const auth = namespace("auth");
 @Component
@@ -41,11 +73,6 @@ export default class NavigationDrawer extends Vue {
   private token: string;
   @auth.Getter
   private authenticated: boolean;
-
-  @Emit("toggleDrawer")
-  toggleDrawer(): null {
-    return null;
-  }
 
   private pages = [
     { title: "Home", icon: "mdi-home", to: "/" },
@@ -57,13 +84,13 @@ export default class NavigationDrawer extends Vue {
   ];
 
   private notAuthPages = [
-    { title: "Signup", icon: "mdi-account-box", to: "/signup" },
-    { title: "Signin", icon: "mdi-account-box", to: "/signin" },
+    { title: "Signup", icon: "mdi-account-plus", to: "/signup" },
+    { title: "Signin", icon: "mdi-login", to: "/signin" },
   ];
   private authPages = [
     {
       title: "Signout",
-      icon: "mdi-account-box",
+      icon: "mdi-logout",
       to: "#",
     },
   ];
