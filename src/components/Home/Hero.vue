@@ -1,5 +1,11 @@
 <template>
-  <v-carousel cycle height="500" hide-delimiters show-arrows-on-hover>
+  <v-carousel
+    :height="carouselHeight"
+    class="grey lighten-4 px-3"
+    cycle
+    hide-delimiters
+    show-arrows-on-hover
+  >
     <v-carousel-item v-for="(slide, i) in slides" :key="i">
       <v-sheet height="100%">
         <v-row
@@ -7,9 +13,9 @@
           align="center"
           justify="center"
         >
-          <section class="px-3">
-            <v-container class="pt-15">
-              <v-row class="align-center">
+          <section>
+            <v-container>
+              <v-row class="align-center justify-center">
                 <v-col lg="6">
                   <h1>{{ slide.heroTitle }}</h1>
                   <p>
@@ -42,12 +48,13 @@ import { Component, Vue } from "vue-property-decorator";
 import { Hero } from "./types";
 @Component
 export default class extends Vue {
+  private carouselHeight = 600;
   private slides: Array<Hero> = [
     {
       heroTitle: "Achieving Growth",
       heroDescription:
         "Helping Clients Achieve Growth Through Data Driven Market Research",
-      buttonText: "Explore our market research",
+      buttonText: "Explore more",
       to: {
         name: "Dashboard",
       },
@@ -57,14 +64,30 @@ export default class extends Vue {
       heroTitle: "Products",
       heroDescription:
         "We offer everything surrounding Real Estate, Economics, Demographics and Capital Markets Data and Market Research",
-      buttonText: "Explore our products",
+      buttonText: "Explore products",
       to: {
         name: "Dashboard",
       },
       img: "hero2.png",
     },
   ];
+
+  created(): void {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 600) {
+        this.carouselHeight = 300;
+      } else {
+        this.carouselHeight = 600;
+      }
+    });
+  }
+
+  destroyed(): void {
+    window.removeEventListener("resize", () => {
+      return null;
+    });
+  }
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped></style>
