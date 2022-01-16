@@ -24,30 +24,53 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import TextField from "@/components/TextField.vue";
-export default {
+import { SigninData } from "./types";
+import { RootMutations } from "@/store";
+
+export default Vue.extend({
   components: {
     TextField,
   },
-  data: () => ({
+  data: (): SigninData => ({
     valid: true,
     email: "",
     emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      (v: string) => !!v || "E-mail is required",
+      (v: string) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
     password: "",
     passwordRules: [
-      (v) => !!v || "Password is required",
-      (v) => v.length >= 8 || "Password must have atleast 8 characters",
+      (v: string) => !!v || "Password is required",
+      (v: string) => v.length >= 8 || "Password must have atleast 8 characters",
     ],
   }),
 
   methods: {
-    submit() {
-      const valid = this.$refs.form.validate();
+    submit(): void {
+      const valid = (
+        this.$refs.form as Vue & { validate: () => boolean }
+      ).validate();
+      if (valid && this.email && this.password) {
+        const credentials = {
+          email: this.email,
+          password: this.password,
+        };
+        this.$store
+          .dispatch("auth/login", credentials)
+          .then((response) => {
+            console.log(response);
+          })
+          .catch(() => {
+            this.$store.commit(
+              RootMutations.SHOW_SNACKBAR,
+              "E-mail or password isn't correct"
+            );
+          });
+      }
     },
   },
-};
+});
 </script>

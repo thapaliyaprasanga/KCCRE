@@ -16,6 +16,11 @@ export interface RegisterDTO {
   password: string;
 }
 
+export interface LoginDTO {
+  email: string;
+  password: string;
+}
+
 export interface Response {
   data: Record<string, unknown>;
   status: Record<string, unknown>;
