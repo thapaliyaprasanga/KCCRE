@@ -1,16 +1,17 @@
 <template>
-  <hello-world />
+  <Hero />
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Hero from "@/components/Home/Hero.vue";
+import { Component, Vue } from "vue-property-decorator";
 import HelloWorld from "../components/HelloWorld.vue";
 
-export default Vue.extend({
-  name: "Home",
-
+@Component({
   components: {
     HelloWorld,
+    Hero,
   },
-});
+})
+export default class Home extends Vue {}
 </script>
