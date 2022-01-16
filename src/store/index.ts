@@ -20,8 +20,16 @@ const state: RootState = {
 
 const mutations: MutationTree<RootState> = {
   [RootMutations.SHOW_SNACKBAR](state, text) {
-    state.snackbar.show = true;
-    state.snackbar.text = text;
+    let timeout = 0;
+    if (state.snackbar.show) {
+      state.snackbar.show = false;
+      state.snackbar.text = null;
+      timeout = 300;
+    }
+    setTimeout(() => {
+      state.snackbar.show = true;
+      state.snackbar.text = text;
+    }, timeout);
   },
   [RootMutations.HIDE_SNACKBAR](state) {
     state.snackbar.show = false;
