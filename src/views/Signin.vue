@@ -29,6 +29,7 @@ import Vue from "vue";
 import TextField from "@/components/TextField.vue";
 import { SigninData } from "./types";
 import { RootMutations } from "@/store";
+import { AuthMutations } from "@/store/modules/auth/mutations";
 
 export default Vue.extend({
   components: {
@@ -64,6 +65,8 @@ export default Vue.extend({
             console.log(response);
           })
           .catch(() => {
+            this.$store.commit(`auth/${AuthMutations.SET_TOKEN}`, null);
+            this.$store.commit(`auth/${AuthMutations.SET_USER}`, null);
             this.$store.commit(
               RootMutations.SHOW_SNACKBAR,
               "E-mail or password isn't correct"

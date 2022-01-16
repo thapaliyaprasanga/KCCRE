@@ -7,11 +7,15 @@ import axios from "axios";
 
 Vue.config.productionTip = false;
 
+require("@/store/subscriber");
+
 axios.defaults.baseURL = "http://localhost:5000";
 
-new Vue({
-  router,
-  store,
-  vuetify,
-  render: (h) => h(App),
-}).$mount("#app");
+store.dispatch("auth/setUser", localStorage.getItem("token")).then(() => {
+  new Vue({
+    router,
+    store,
+    vuetify,
+    render: (h) => h(App),
+  }).$mount("#app");
+});
