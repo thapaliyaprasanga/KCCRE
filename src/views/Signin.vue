@@ -61,8 +61,10 @@ export default Vue.extend({
         };
         this.$store
           .dispatch("auth/login", credentials)
-          .then((response) => {
-            console.log(response);
+          .then(() => {
+            this.$router.replace({
+              name: "Dashboard",
+            });
           })
           .catch(() => {
             this.$store.commit(`auth/${AuthMutations.SET_TOKEN}`, null);

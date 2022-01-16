@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
+import store from "@/store";
 
 Vue.use(VueRouter);
 
@@ -23,11 +24,34 @@ const routes: Array<RouteConfig> = [
     path: "/signup",
     name: "Signup",
     component: () => import("../views/Signup.vue"),
+    beforeEnter: (to, from, next) => {
+      if (store.getters["auth/authenticated"]) {
+        return next("dashboard");
+      }
+      next();
+    },
   },
   {
     path: "/signin",
     name: "Signin",
     component: () => import("../views/Signin.vue"),
+    beforeEnter: (to, from, next) => {
+      if (store.getters["auth/authenticated"]) {
+        return next("dashboard");
+      }
+      next();
+    },
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: () => import("../views/Dashboard.vue"),
+    beforeEnter: (to, from, next) => {
+      if (!store.getters["auth/authenticated"]) {
+        return next("signin");
+      }
+      next();
+    },
   },
 ];
 

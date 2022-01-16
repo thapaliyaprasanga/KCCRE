@@ -1,6 +1,12 @@
 <template>
   <div>
-    <NavigationDrawer @toggleDrawer="drawer = false" v-if="drawer" />
+    <NavigationDrawer
+      @toggleDrawer="drawer = false"
+      :authPages="authPages"
+      :notAuthPages="notAuthPages"
+      :pages="pages"
+      v-if="drawer"
+    />
     <AppBar
       @toggleDrawer="drawer = true"
       :authPages="authPages"
@@ -39,7 +45,12 @@ export default class Header extends Vue {
     {
       title: "Signout",
       icon: "mdi-account-box",
-      to: "#",
+      click: () => {
+        this.$store.dispatch("auth/signOut");
+        this.$router.replace({
+          name: "Signin",
+        });
+      },
     },
   ];
 }

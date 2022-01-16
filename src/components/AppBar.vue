@@ -30,6 +30,7 @@
           v-for="(item, index) in authPages"
           :key="index"
           :to="item.to"
+          @click="handleClick(index)"
         >
           <v-list-item-title> {{ item.title }} </v-list-item-title>
         </v-list-item>
@@ -61,9 +62,13 @@ const auth = namespace("auth");
 export default class AppBar extends Vue {
   @auth.Getter
   private authenticated: boolean;
-  @Prop() readonly authPages: Record<string, unknown>;
+  @Prop() readonly authPages: Array<Record<string, any>>;
   @Prop() readonly pages: Record<string, unknown>;
   @Prop() readonly notAuthPages: Record<string, unknown>;
+
+  handleClick(index: number): void {
+    this.authPages[index].click.call(this);
+  }
 }
 </script>
 

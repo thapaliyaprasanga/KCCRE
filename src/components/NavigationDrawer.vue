@@ -29,10 +29,11 @@
       </v-list-item>
       <span v-if="authenticated">
         <v-list-item
-          v-for="item in authPages"
+          v-for="(item, index) in authPages"
           :key="item.title"
           link
           :to="item.to"
+          @click="handleClick(index)"
         >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -64,36 +65,21 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import { namespace } from "vuex-class";
 const auth = namespace("auth");
 @Component
 export default class NavigationDrawer extends Vue {
-  @auth.State
-  private token: string;
   @auth.Getter
   private authenticated: boolean;
 
-  private pages = [
-    { title: "Home", icon: "mdi-home", to: "/" },
-    { title: "About", icon: "mdi-information", to: "/about" },
-    { title: "Products", icon: "mdi-file-pdf-box", to: "/products" },
-    { title: "Freebies", icon: "mdi-freebsd", to: "/freebies" },
-    { title: "Blog", icon: "mdi-post", to: "/blog" },
-    { title: "Contact", icon: "mdi-account-box", to: "/contact" },
-  ];
+  @Prop() readonly authPages: Array<Record<string, any>>;
+  @Prop() readonly pages: Record<string, unknown>;
+  @Prop() readonly notAuthPages: Record<string, unknown>;
 
-  private notAuthPages = [
-    { title: "Signup", icon: "mdi-account-plus", to: "/signup" },
-    { title: "Signin", icon: "mdi-login", to: "/signin" },
-  ];
-  private authPages = [
-    {
-      title: "Signout",
-      icon: "mdi-logout",
-      to: "#",
-    },
-  ];
+  handleClick(index: number): void {
+    this.authPages[index].click.call(this);
+  }
 }
 </script>
 
