@@ -33,7 +33,7 @@ export default class Header extends Vue {
     { title: "About", icon: "mdi-information", to: "/about" },
     { title: "Products", icon: "mdi-file-pdf-box", to: "/products" },
     { title: "Freebies", icon: "mdi-freebsd", to: "/freebies" },
-    { title: "Blog", icon: "mdi-post", to: "/blog" },
+    { title: "Blog", icon: "mdi-post", to: "/blogs" },
     { title: "Contact", icon: "mdi-account-box", to: "/contact" },
   ];
 

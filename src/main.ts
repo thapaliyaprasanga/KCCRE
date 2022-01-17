@@ -11,11 +11,11 @@ require("@/store/subscriber");
 
 axios.defaults.baseURL = "http://localhost:5000";
 
-store.dispatch("auth/setUser", localStorage.getItem("token")).then(() => {
+// store.dispatch("auth/setUser", localStorage.getItem("token")).then(() => {
   new Vue({
     router,
     store,
     vuetify,
     render: (h) => h(App),
   }).$mount("#app");
-});
+// });
