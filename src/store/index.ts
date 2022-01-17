@@ -8,6 +8,7 @@ Vue.use(Vuex);
 export const RootMutations = {
   SHOW_SNACKBAR: "SHOW_SNACKBAR",
   HIDE_SNACKBAR: "HIDE_SNACKBAR",
+  SET_LOADING: "SET_LOADING",
 };
 
 const state: RootState = {
@@ -34,6 +35,10 @@ const mutations: MutationTree<RootState> = {
   [RootMutations.HIDE_SNACKBAR](state) {
     state.snackbar.show = false;
     state.snackbar.text = null;
+  },
+
+  [RootMutations.SET_LOADING](state) {
+    state.loading = !state.loading;
   },
 };
 

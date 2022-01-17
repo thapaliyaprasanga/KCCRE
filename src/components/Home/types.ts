@@ -7,3 +7,9 @@ export interface Hero {
   };
   img: string;
 }
+
+export interface CardDTO {
+  title: string;
+  description: string;
+  img: string;
+}
