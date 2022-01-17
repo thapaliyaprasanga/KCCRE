@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto my-4" max-width="374">
+  <v-card class="mx-auto my-4 scale-on-hover" max-width="374">
     <v-img height="150" :src="card.img"></v-img>
 
     <v-card-title class="justify-center">{{ card.title }}</v-card-title>
@@ -20,12 +20,3 @@ export default class extends Vue {
   @Prop() readonly card: CardDTO;
 }
 </script>
-
-<style lang="scss" scoped>
-.v-card {
-  &:hover {
-    transition: 500ms ease-in-out;
-    transform: scale(1.04);
-  }
-}
-</style>

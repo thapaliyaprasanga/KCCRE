@@ -46,12 +46,12 @@ const routes: Array<RouteConfig> = [
     path: "/dashboard",
     name: "Dashboard",
     component: () => import("../views/Dashboard.vue"),
-    // beforeEnter: (to, from, next) => {
-    //   if (!store.getters["auth/authenticated"]) {
-    //     return next("signin");
-    //   }
-    //   next();
-    // },
+    beforeEnter: (to, from, next) => {
+      if (!store.getters["auth/authenticated"]) {
+        return next("signin");
+      }
+      next();
+    },
   },
 ];
 

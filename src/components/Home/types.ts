@@ -13,3 +13,9 @@ export interface CardDTO {
   description: string;
   img: string;
 }
+
+export interface FeaturedBlogDTO {
+  title: string;
+  description: string;
+  img: string;
+}
