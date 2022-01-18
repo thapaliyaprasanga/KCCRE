@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <v-container class="mt-10">
-      <h1 class="primary--text text-center">Who are we?</h1>
+  <div class="primary lighten-1 white--text pt-10">
+    <v-container>
+      <h1 class="text-center">Who are we?</h1>
       <p class="my-10 font-weight-light text-md-h5 text-center">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
         atque velit optio voluptate aperiam, animi quas quaerat autem aliquam

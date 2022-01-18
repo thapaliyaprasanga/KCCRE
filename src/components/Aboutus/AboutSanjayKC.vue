@@ -1,7 +1,7 @@
 <template>
-  <div class="grey lighten-4">
+  <div class="grey lighten-4 py-10">
     <v-container>
-      <h1 class="text-center primary--text my-10">Sanjay KC</h1>
+      <h1 class="text-center primary--text mb-10">Sanjay KC</h1>
       <v-row>
         <v-col cols="12" md="6">
           <v-card
