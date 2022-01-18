@@ -33,7 +33,7 @@ export default class WhatWeOffer extends Vue {
     {
       title: "Blogs",
       description:
-        "Topics include ALL sectors of Real Estate, national and regional economics, demographics and capital markets",
+        "Topics include ALL sectors of Real Estate, national and regional economics, demographics and capital markets hait hmmm",
       img: "card2.png",
     },
     {
