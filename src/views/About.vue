@@ -2,6 +2,7 @@
   <div>
     <Slogan />
     <WhoAreWe />
+    <OurVision />
     <AboutSanjayKC />
     <MeetOurTeams />
   </div>
@@ -13,6 +14,7 @@ import Slogan from "@/components/Aboutus/Slogan.vue";
 import WhoAreWe from "@/components/Aboutus/WhoAreWe.vue";
 import AboutSanjayKC from "@/components/Aboutus/AboutSanjayKC.vue";
 import MeetOurTeams from "@/components/Aboutus/MeetOurTeam.vue";
+import OurVision from "@/components/Aboutus/OurVision.vue";
 
 @Component({
   components: {
@@ -20,6 +22,7 @@ import MeetOurTeams from "@/components/Aboutus/MeetOurTeam.vue";
     WhoAreWe,
     AboutSanjayKC,
     MeetOurTeams,
+    OurVision,
   },
 })
 export default class AboutUs extends Vue {}

@@ -1,6 +1,6 @@
 <template>
-  <v-container class="my-10">
-    <h2 class="primary--text text-center mb-10">Our Teams</h2>
+  <v-container class="my-16 py-16">
+    <h2 class="primary--text text-center mb-10">Our Team</h2>
     <v-row>
       <OurTeamCard v-for="(item, index) in items" :key="index" :item="item" />
     </v-row>
