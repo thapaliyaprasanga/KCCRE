@@ -43,6 +43,11 @@ const routes: Array<RouteConfig> = [
     },
   },
   {
+    path: "/contact",
+    name: "Contact",
+    component: () => import("../views/Contact.vue"),
+  },
+  {
     path: "/dashboard",
     name: "Dashboard",
     component: () => import("../views/Dashboard.vue"),
