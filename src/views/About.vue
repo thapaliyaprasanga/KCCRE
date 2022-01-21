@@ -1,9 +1,9 @@
 <template>
   <div>
     <Slogan />
+    <AboutSanjayKC />
     <WhoAreWe />
     <OurVision />
-    <AboutSanjayKC />
     <MeetOurTeams />
   </div>
 </template>

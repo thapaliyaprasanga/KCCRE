@@ -1,5 +1,5 @@
 <template>
-  <div class="grey lighten-4 py-10">
+  <div class="py-10">
     <v-container>
       <h1 class="text-center primary--text mb-10">Sanjay KC</h1>
       <v-row>
